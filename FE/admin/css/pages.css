@@ -1,0 +1,8 @@
+/* admin/css/pages.css */
+.admin-card { background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); margin-bottom: 20px; border: none; }
+.table img { width: 45px; height: 45px; object-fit: cover; border-radius: 4px; }
+.stat-border { border-left: 4px solid; }
+.stat-success { border-left-color: var(--success-color); }
+.stat-warning { border-left-color: #ffc107; }
+.stat-primary { border-left-color: var(--primary-color); }
+.image-preview-container img { width: 70px; height: 70px; object-fit: cover; border-radius: 5px; margin-right: 10px; margin-top: 10px; border: 1px solid #ccc; }

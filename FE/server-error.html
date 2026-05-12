@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mất Kết Nối Máy Chủ | TIS Insurance Broker</title>
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --tis-primary: #0056b3;
+            --tis-text: #334155;
+            --tis-bg: #f8fafc;
+        }
+
+        body {
+            background-color: var(--tis-bg);
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .server-error-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .error-card {
+            background: #ffffff;
+            padding: 50px 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--tis-primary);
+        }
+
+        /* Animation cho Icon SVG */
+        .icon-pulse {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+
+        .icon-pulse i {
+            font-size: 50px;
+            color: #ef4444; 
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        .error-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--tis-text);
+            margin-bottom: 15px;
+        }
+
+        .error-desc {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn-tis {
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--tis-primary);
+            color: #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 86, 179, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px -1px rgba(0, 86, 179, 0.3);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: #f1f5f9;
+            color: #475569;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e8f0;
+            color: #1e293b;
+        }
+
+        /* Khung hiển thị mã lỗi (Terminal Style) */
+        .error-details {
+            margin-top: 40px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 8px;
+            text-align: left;
+            border-left: 4px solid #ef4444;
+        }
+
+        .error-code-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #94a3b8;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .error-code-value {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: #ef4444;
+            word-break: break-all;
+        }
+
+        /* ========================================================
+           CSS MOBILE (Tối ưu nút không bị thô trên điện thoại)
+           Breakpoint: <= 767px theo dự án TIS
+           ======================================================== */
+        @media screen and (max-width: 767px) {
+            .error-card {
+                padding: 40px 25px 25px;
+            }
+
+            .error-title {
+                font-size: 20px;
+            }
+
+            .error-desc {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+
+            /* Chuyển các nút sang dạng icon tròn gọn gàng */
+            .action-buttons {
+                gap: 20px;
+            }
+
+            .btn-tis {
+                width: 50px;
+                height: 50px;
+                padding: 0;
+                justify-content: center;
+                border-radius: 50%; /* Làm nút tròn */
+                gap: 0;
+            }
+
+            /* Ẩn chữ trên mobile */
+            .btn-text {
+                display: none;
+            }
+
+            /* Tăng kích thước icon cho nút tròn */
+            .btn-tis i {
+                font-size: 20px;
+                margin: 0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="server-error-container">
+        <div class="error-card">
+            
+            <div class="icon-pulse">
+                <i class="fa-solid fa-server"></i>
+            </div>
+
+            <h1 class="error-title">Mất Kết Nối Máy Chủ</h1>
+            
+            <p class="error-desc">
+                Hệ thống của <strong>TIS Insurance Broker</strong> hiện tại không thể kết nối hoặc đang được bảo trì định kỳ. Vui lòng kiểm tra kết nối mạng của bạn hoặc thử lại sau ít phút.
+            </p>
+
+            <div class="action-buttons">
+                <a href="#" onclick="checkConnection(event)" class="btn-tis btn-primary">
+                    <i class="fa-solid fa-rotate-right" id="refresh-icon"></i> <span class="btn-text">Thử kết nối lại</span>
+                </a>
+                <a href="javascript:history.back()" class="btn-tis btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> <span class="btn-text">Quay lại</span>
+                </a>
+            </div>
+
+            <div class="error-details">
+                <div class="error-code-label">CHI TIẾT LỖI HỆ THỐNG</div>
+                <div class="error-code-value">
+                    <span id="error-status">UNKNOWN_SERVER_ERROR</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        // Lấy mã lỗi từ URL Parameter và hiển thị lên màn hình
+        document.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const errorCode = urlParams.get('error');
+            const statusElement = document.getElementById('error-status');
+
+            if (errorCode) {
+                // Định dạng lại thông báo lỗi, ví dụ: "Failed to fetch" -> "FAILED_TO_FETCH"
+                statusElement.innerText = errorCode.toUpperCase().replace(/[^A-Z0-9]/g, '_');
+            }
+        });
+
+        // Nút thử kết nối lại
+        async function checkConnection(event) {
+            event.preventDefault();
+            
+            const btn = event.currentTarget;
+            const icon = document.getElementById('refresh-icon');
+            
+            icon.classList.add('fa-spin');
+            btn.style.pointerEvents = 'none';
+            btn.style.opacity = '0.8';
+
+            try {
+                // Ping thẳng về API Server Backend
+                const response = await fetch(apiUrl('/products/?limit=1'));
+                
+                if (response.ok || response.status === 401 || response.status === 403) {
+                    // Trả lời = Sống -> Quay về trang chủ
+                    redirectTo('index.html');
+                } else {
+                    throw new Error('Vẫn lỗi');
+                }
+            } catch (error) {
+                // Vẫn sập -> Dừng xoay vòng, giữ nguyên trang lỗi
+                setTimeout(() => {
+                    icon.classList.remove('fa-spin');
+                    btn.style.pointerEvents = 'auto';
+                    btn.style.opacity = '1';
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>

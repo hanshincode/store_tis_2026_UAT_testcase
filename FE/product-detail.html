@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết Gói Bảo Hiểm - TIS Broker</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/product-detail.css"> </head>
+<body>
+
+    <header id="header-placeholder"></header>
+
+    <div class="container product-container">
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb small">
+                <li class="breadcrumb-item"><a href="index.html" class="text-muted text-decoration-none">Trang chủ</a></li>
+                <li class="breadcrumb-item"><a href="products.html" class="text-muted text-decoration-none">Sản phẩm</a></li>
+                <li class="breadcrumb-item active fw-bold text-dark" id="breadcrumb-name">...</li>
+            </ol>
+        </nav>
+
+        <div id="product-detail-container">
+            <div class="row gx-5">
+                <div class="col-lg-7"><div class="bg-light rounded-4" style="height: 450px;"></div></div>
+                <div class="col-lg-5 py-5">
+                    <div class="spinner-border text-danger" role="status"></div>
+                    <span class="ms-2 text-muted">Đang tải dữ liệu...</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-5 pt-5 border-top">
+            <div class="col-lg-9 mx-auto">
+                <h3 class="fw-bold mb-4 text-center text-uppercase text-danger">Chi tiết quyền lợi bảo hiểm</h3>
+                <div id="product-long-desc" class="ck-content bg-white p-4 p-md-5 rounded-4 shadow-sm border">
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-bar-mobile">
+        <div class="d-flex gap-2">
+            <button class="btn btn-light border flex-grow-1 rounded-pill fw-bold" onclick="requestConsultation()">
+                <i class="fas fa-headset"></i> Tư vấn
+            </button>
+            <button class="btn btn-danger flex-grow-1 rounded-pill fw-bold" onclick="addToCart()">
+                <i class="fas fa-shield-alt"></i> Mua ngay
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade" id="consultationModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Yêu cầu tư vấn</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body pt-3">
+                    <p class="text-muted small mb-3">Vui lòng để lại thông tin, chuyên viên TIS sẽ liên hệ bạn trong vòng 30 phút.</p>
+                    <form id="consultation-form">
+                        <input type="text" id="consult-name" class="form-control mb-3 rounded-3 p-3 bg-light border-0" placeholder="Họ và Tên *" required>
+                        <input type="text" id="consult-contact" class="form-control mb-3 rounded-3 p-3 bg-light border-0" placeholder="Số điện thoại / Zalo *" required>
+                        <textarea id="consult-note" class="form-control mb-3 rounded-3 p-3 bg-light border-0" rows="3" placeholder="Nội dung cần tư vấn..."></textarea>
+                        <button type="submit" class="btn btn-danger w-100 rounded-pill p-3 fw-bold">Gửi yêu cầu ngay</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer-placeholder"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/common.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/product-detail.js"></script>
+</body>
+</html>

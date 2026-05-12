@@ -1,0 +1,177 @@
+/* TIS System - Main Style for User Interface 
+   Path: fe/user/css/style.css
+*/
+
+:root {
+    --primary-red: #D71920;
+    --dark-red: #b0141a;
+    --light-gray: #f0f2f5;
+    --border-color: #e4e6eb;
+}
+
+/* ========================================================
+   1. LAYOUT & NAVBAR FIXES
+   ======================================================== */
+.user-navbar { 
+    background-color: #fff; 
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
+    padding: 15px 0; 
+}
+
+/* Fix lỗi logo bị đè: Ẩn đoạn text thừa "TIS LOGO" cạnh hình ảnh */
+.navbar-brand {
+    font-size: 0 !important;
+    display: flex;
+    align-items: center;
+}
+
+/* Đồng bộ màu đỏ cho các nút quan trọng trên Header */
+.navbar .btn-primary, .bg-primary {
+    background-color: var(--primary-red) !important;
+    border-color: var(--primary-red) !important;
+}
+
+/* Giữ khoảng cách cho cụm icon bên phải (Giỏ hàng, User) */
+.nav-right-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ========================================================
+   2. PRODUCT CARDS (Giao diện sản phẩm)
+   ======================================================== */
+.product-card { 
+    border: none; 
+    border-radius: 12px; 
+    transition: all 0.3s ease; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+    overflow: hidden; 
+    height: 100%;
+}
+
+.product-card:hover { 
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.product-img-wrapper { 
+    height: 200px; 
+    overflow: hidden; 
+    background: #f8f9fa; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.product-img-wrapper img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.5s;
+}
+
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.1);
+}
+
+.price-tag { 
+    color: var(--primary-red); 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+}
+
+/* ========================================================
+   3. CHAT WIDGET - GIAO DIỆN ĐỎ TRẮNG (MODERN)
+   ======================================================== */
+
+/* Khung cửa sổ chat */
+#chat-widget-window {
+    box-shadow: 0 5px 30px rgba(0,0,0,0.2) !important;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    background: #fff;
+    transition: all 0.3s ease;
+}
+
+/* Header của Widget */
+#chat-widget-window .card-header {
+    background-color: var(--primary-red) !important;
+    color: white !important;
+    padding: 15px;
+    border: none;
+}
+
+/* Vùng hiển thị tin nhắn */
+#chat-widget-messages {
+    background-color: #fcfcfc;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Bong bóng chat của KHÁCH HÀNG (Bạn) */
+.widget-bubble-me {
+    background-color: var(--primary-red);
+    color: #ffffff;
+    padding: 10px 14px;
+    border-radius: 18px 18px 4px 18px;
+    font-size: 0.95rem;
+    max-width: 85%;
+    box-shadow: 0 2px 5px rgba(215, 25, 32, 0.2);
+    align-self: flex-end;
+}
+
+/* Bong bóng chat của NHÂN VIÊN (Staff) */
+.widget-bubble-staff {
+    background-color: var(--light-gray);
+    color: #1c1e21;
+    padding: 10px 14px;
+    border-radius: 18px 18px 18px 4px;
+    font-size: 0.95rem;
+    max-width: 85%;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    align-self: flex-start;
+}
+
+/* Input gửi tin nhắn */
+.chat-widget-input-area {
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+}
+
+.chat-widget-input-area input:focus {
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 0.2rem rgba(215, 25, 32, 0.15);
+}
+
+/* Avatar nhân viên */
+.widget-avatar img {
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: white;
+}
+
+/* Hiệu ứng mượt mà khi tin nhắn xuất hiện */
+.animate-fade-in {
+    animation: widgetMsgFade 0.3s ease-out forwards;
+}
+
+@keyframes widgetMsgFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive: Ẩn bớt thành phần trên mobile để tránh đè layout */
+@media (max-width: 768px) {
+    .navbar-text-hide {
+        display: none !important;
+    }
+    #chat-widget-window {
+        width: 90% !important;
+        right: 5% !important;
+        bottom: 80px !important;
+    }
+}

@@ -1,0 +1,234 @@
+/* =========================================
+   1. BỐ CỤC TỔNG THỂ (LAYOUT)
+   ========================================= */
+body { 
+    margin: 0; 
+    overflow-x: hidden; 
+    background-color: #fff; 
+}
+
+.auth-container { 
+    display: flex; 
+    min-height: 100vh; 
+}
+
+/* =========================================
+   2. KHU VỰC BANNER TRÁI (SLIDESHOW)
+   ========================================= */
+.auth-banner {
+    flex: 1; /* Tự động lấp đầy không gian còn lại */
+    position: relative;
+    display: none; /* Ẩn trên mobile */
+    overflow: hidden; 
+    background-color: #212529; 
+}
+
+@media (min-width: 992px) { 
+    .auth-banner { display: block; } 
+}
+
+/* Slideshow tự động chuyển ảnh */
+.banner-slideshow { 
+    position: absolute; 
+    inset: 0; 
+    z-index: 0; 
+}
+
+/* Từng tấm ảnh Slide */
+.banner-slide {
+    position: absolute; 
+    inset: 0;
+    background-size: cover; 
+    background-position: center;
+    opacity: 0; 
+    transition: opacity 2.5s ease-in-out; /* Fade mượt mà */
+    will-change: opacity, transform;
+    z-index: 1; /* Mặc định chìm xuống dưới */
+}
+
+/* Kích hoạt mờ dần */
+.banner-slide.active { 
+    opacity: 1; 
+    z-index: 2; /* Nổi lên trên khi được chọn */
+}
+
+/* Kích hoạt hiệu ứng zoom (Ken Burns) tách biệt để không bị giật */
+.banner-slide.zooming { 
+    animation: kenBurnsEffect 20s linear forwards; 
+}
+
+/* Lớp phủ Gradient chữ */
+.auth-banner-overlay {
+    position: absolute; 
+    inset: 0; 
+    z-index: 3;
+    background: linear-gradient(135deg, rgba(73, 6, 8, 0.9) 0%, rgba(33, 37, 41, 0.85) 100%);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    padding: 10%; 
+    color: white;
+}
+
+.auth-banner-overlay h1 { 
+    font-size: 3rem; 
+    font-weight: 800; 
+    margin-bottom: 20px; 
+    line-height: 1.2; 
+}
+
+.auth-banner-overlay p { 
+    font-size: 1.2rem; 
+    opacity: 0.9; 
+}
+
+/* =========================================
+   3. KHU VỰC FORM PHẢI
+   ========================================= */
+.auth-form-area {
+    width: 100%; 
+    max-width: 550px; /* Khóa cứng chiều rộng tối đa */
+    flex-shrink: 0;   /* Cấm Banner ép móp Form */
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center;
+    padding: 40px 50px; 
+    background: #fff; 
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05); 
+    z-index: 4;
+    overflow-y: auto;
+}
+
+/* Responsive lề cho Mobile */
+@media (max-width: 576px) { 
+    .auth-form-area { padding: 30px 20px; } 
+}
+
+/* =========================================
+   4. TÙY CHỈNH Ô NHẬP LIỆU (INPUT)
+   ========================================= */
+.auth-form-area .form-control, 
+.auth-form-area .form-select {
+    padding: 12px 15px; 
+    border-radius: 8px; 
+    border: 1px solid #e0e4e7; 
+    background-color: #f8f9fa;
+}
+
+.auth-form-area .form-control:focus, 
+.auth-form-area .form-select:focus {
+    background-color: #fff; 
+    border-color: var(--primary-color); 
+    box-shadow: 0 0 0 0.25rem rgba(215, 25, 32, 0.1);
+}
+
+.auth-form-area .input-group-text { 
+    border-radius: 8px 0 0 8px; 
+    border: 1px solid #e0e4e7; 
+    background-color: #f8f9fa; 
+}
+
+.auth-form-area .toggle-password { 
+    border-radius: 0 8px 8px 0 !important; 
+}
+
+/* =========================================
+   5. HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATIONS)
+   ========================================= */
+
+/* Định nghĩa Keyframes */
+@keyframes fadeInLeft { 
+    from { opacity: 0; transform: translateX(-40px); } 
+    to { opacity: 1; transform: translateX(0); } 
+}
+@keyframes fadeInRight { 
+    from { opacity: 0; transform: translateX(40px); } 
+    to { opacity: 1; transform: translateX(0); } 
+}
+@keyframes fadeInUp { 
+    from { opacity: 0; transform: translateY(20px); } 
+    to { opacity: 1; transform: translateY(0); } 
+}
+@keyframes kenBurnsEffect { 
+    0% { transform: scale(1) translate(0, 0); } 
+    100% { transform: scale(1.15) translate(-1%, -1%); } 
+}
+
+/* Hiệu ứng Text bên trái */
+.auth-banner-overlay h1, 
+.auth-banner-overlay p, 
+.auth-banner-overlay div { 
+    animation: fadeInLeft 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
+    opacity: 0; 
+}
+.auth-banner-overlay h1 { animation-delay: 0.1s; }
+.auth-banner-overlay p { animation-delay: 0.3s; }
+.auth-banner-overlay div:nth-child(4) { animation-delay: 0.5s; }
+.auth-banner-overlay div:nth-child(5) { animation-delay: 0.6s; }
+
+/* Hiệu ứng Form bên phải */
+.auth-form-area { 
+    animation: fadeInRight 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
+}
+
+.auth-form-area form .mb-3, 
+.auth-form-area form .mb-4, 
+.auth-form-area form .row > div, 
+.auth-form-area form button {
+    animation: fadeInUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; 
+    opacity: 0;
+}
+/* Hiệu ứng trượt lên lướt từng phần tử */
+.auth-form-area form > div:nth-child(1) { animation-delay: 0.2s; }
+.auth-form-area form > div:nth-child(2) { animation-delay: 0.3s; }
+.auth-form-area form > div:nth-child(3) { animation-delay: 0.4s; }
+.auth-form-area form > div:nth-child(4) { animation-delay: 0.5s; }
+.auth-form-area form button { animation-delay: 0.6s; }
+
+/* =========================================
+   CẬP NHẬT LOGO CHO KHU VỰC FORM (TO HƠN NỮA)
+   ========================================= */
+.auth-logo { 
+    height: 100px; /* Tăng từ 70px lên 100px (hoặc 110px nếu muốn to hơn nữa) */
+    width: auto; 
+    max-width: 100%;
+    object-fit: contain; 
+    margin-bottom: 20px; /* Tăng một chút khoảng cách với chữ bên dưới cho thoáng */
+    
+    /* Các hiệu ứng giữ nguyên */
+    animation: fadeInRight 0.8s ease forwards; 
+    transition: transform 0.3s ease; 
+}
+
+.auth-logo:hover { 
+    transform: scale(1.05);
+}
+
+/* Kích thước trên điện thoại (Mobile) */
+@media (max-width: 768px) {
+    .auth-logo {
+        height: 70px; /* Trên điện thoại cũng cho to hơn một chút so với cũ */
+        margin-bottom: 15px;
+    }
+}
+
+
+/* =========================================
+   CANH GIỮA FORM TRÊN ĐIỆN THOẠI/TABLET
+   ========================================= */
+@media (max-width: 991px) {
+    .auth-container {
+        justify-content: center; /* Canh giữa form theo chiều ngang */
+        background-color: #f8f9fa; /* Thêm nền xám nhạt để nổi bật form trắng */
+    }
+    
+    .auth-form-area {
+        margin: 0 auto; /* Đảm bảo form tự động lùi đều 2 bên */
+        border-radius: 12px; /* Thêm bo góc nhẹ cho form trên mobile đẹp hơn */
+    }
+}
+
+/* Đảm bảo con trỏ chuột chuyển thành hình bàn tay khi trỏ vào icon mắt */
+.cursor-pointer {
+    cursor: pointer !important;
+}

@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  frontend:
+    build: .
+    container_name: tis_frontend
+    ports:
+      - "8080:80" # Map port 8080 của máy chủ vào port 80 của container
+    volumes:
+      - .:/usr/share/nginx/html # Gắn volume để cập nhật giao diện nhanh mà không cần build lại
+    restart: unless-stopped

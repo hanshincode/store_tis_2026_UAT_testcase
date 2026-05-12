@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tiêu đề trang - TIS Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+</head>
+<body>
+    <div class="main-content">
+        <div class="content-body">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h4 class="fw-bold m-0 text-dark">Quản lý Danh mục</h4>
+                    <small class="text-muted">Phân loại sản phẩm bảo hiểm hệ thống</small>
+                </div>
+                <button class="btn btn-danger rounded-pill fw-bold px-4 shadow-sm" onclick="openCategoryModal()">
+                    <i class="fas fa-plus me-2"></i> Thêm mới
+                </button>
+            </div>
+            
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <table class="table align-middle table-hover mb-0">
+                    <thead class="table-light">
+                        <tr>
+                            <th class="ps-4">ID</th>
+                            <th>Tên Danh Mục</th>
+                            <th>Slug</th>
+                            <th>Chuyên môn</th>
+                            <th class="text-end pe-4">Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="category-list"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="categoryModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow rounded-4">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title fw-bold">Thông tin danh mục</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="category-form">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Tên danh mục</label>
+                            <input type="text" id="c-name" class="form-control" placeholder="Ví dụ: Bảo hiểm Xe cơ giới">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small">Nhóm chuyên môn</label>
+                            <select id="c-spec" class="form-select">
+                                <option value="property">Tài sản</option>
+                                <option value="health">Sức khỏe</option>
+                                <option value="vehicle">Xe cộ</option>
+                                <option value="marine">Hàng hải</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Đóng</button>
+                    <button onclick="submitCategory()" class="btn btn-danger rounded-pill px-4 fw-bold">Lưu lại</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../js/common.js"></script>
+    <script src="js/core.js"></script> <script src="js/categories.js"></script>
+</body>
+</html>

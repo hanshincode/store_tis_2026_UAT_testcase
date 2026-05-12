@@ -1,0 +1,281 @@
+/* =========================================================
+   FILE: fontend/css/style.css
+   MAIN STYLESHEET FOR TIS INSURANCE BROKER WEBSITE
+   ========================================================= */
+
+/* --- 1. BIẾN & CẤU HÌNH CHUNG (VARIABLES & BASE) --- */
+:root {
+    --primary-color: #d71920;      /* Đỏ TIS */
+    --primary-hover: #b0151a;      /* Đỏ đậm (khi hover) */
+    --text-color: #333333;         /* Màu chữ chính */
+    --text-muted: #6c757d;         /* Màu chữ phụ */
+    --bg-light: #f8f9fa;           /* Nền xám nhạt */
+    --header-height: 80px;         /* Chiều cao Header */
+    --shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-color);
+    background-color: #fff;
+    /* QUAN TRỌNG: Đẩy nội dung xuống để không bị Header (fixed-top) che mất */
+    padding-top: var(--header-height); 
+    overflow-x: hidden; /* Ngăn thanh cuộn ngang không mong muốn */
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+/* --- 2. HEADER & NAVBAR --- */
+.navbar {
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    height: var(--header-height);
+    padding: 0; /* Reset padding để căn chỉnh chính xác */
+}
+
+.navbar-brand img {
+    height: 50px; /* Chiều cao Logo */
+    width: auto;
+}
+
+.nav-link {
+    color: #444;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 15px !important;
+    position: relative;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary-color) !important;
+}
+
+/* Gạch chân (Underline) khi hover menu */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 15px;
+    background-color: var(--primary-color);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: calc(100% - 30px);
+}
+
+/* --- 3. MEGA MENU (SẢN PHẨM) - QUAN TRỌNG --- */
+/* Class này đặt ở thẻ <li class="nav-item dropdown has-megamenu"> */
+.has-megamenu {
+    position: static !important; /* Bắt buộc để menu con bung full width theo màn hình */
+}
+
+.megamenu {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100vw !important; /* Chiều rộng 100% viewport */
+    margin-top: 0 !important; /* Sát vào header */
+    border-radius: 0 0 8px 8px;
+    padding: 30px 0;
+    background: #fff;
+    border-top: 3px solid var(--primary-color);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    display: none; /* Mặc định ẩn */
+}
+
+/* Chỉ hiện hover trên Desktop (Màn hình > 992px) */
+@media (min-width: 992px) {
+    .nav-item.dropdown:hover .megamenu {
+        display: block; /* Hiện menu khi rê chuột */
+        animation: fadeInUp 0.3s ease-in-out forwards;
+    }
+}
+
+/* Căn chỉnh nội dung bên trong Mega Menu cho thẳng hàng với web */
+.megamenu .container {
+    max-width: 1320px; /* Bootstrap XXL container */
+    margin: 0 auto;
+}
+
+/* Link trong Mega Menu */
+.hover-danger {
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    padding: 6px 0;
+    color: #555;
+    font-size: 0.95rem;
+}
+
+.hover-danger:hover {
+    color: var(--primary-color) !important;
+    transform: translateX(5px); /* Trượt nhẹ sang phải */
+    font-weight: 600;
+}
+
+/* Animation trượt lên */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- 4. TÌM KIẾM (HEADER SEARCH) --- */
+.header-search-form .form-control {
+    border-color: #eee;
+    background-color: #f8f9fa;
+    font-size: 0.9rem;
+    padding-left: 20px;
+}
+
+.header-search-form .form-control:focus {
+    box-shadow: none;
+    background-color: #fff;
+    border-color: var(--primary-color);
+}
+
+.header-search-form .btn-white {
+    background-color: #f8f9fa;
+    border-color: #eee;
+}
+
+.header-search-form .btn-white:hover {
+    background-color: #fff;
+    color: var(--primary-color);
+}
+
+/* Gợi ý tìm kiếm (Dropdown) */
+#search-suggestions {
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+    overflow: hidden;
+}
+
+#search-suggestions .list-group-item {
+    border: none;
+    border-bottom: 1px solid #f1f1f1;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#search-suggestions .list-group-item:hover {
+    background-color: #fcebeb;
+    color: var(--primary-color);
+}
+
+/* --- 5. NÚT BẤM (BUTTONS) --- */
+.btn-danger {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-danger:hover {
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(215, 25, 32, 0.3);
+}
+
+.btn-outline-danger {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-danger:hover,
+.btn-outline-danger.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* --- 6. FOOTER --- */
+footer {
+    background-color: #1a1a1a;
+    color: #bbb;
+    font-size: 0.9rem;
+}
+
+footer h5 {
+    color: #fff;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+footer h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 3px;
+    background-color: var(--primary-color);
+}
+
+footer a {
+    color: #bbb;
+}
+
+footer a:hover {
+    color: #fff;
+    text-decoration: none;
+    padding-left: 5px; /* Hiệu ứng trượt */
+}
+
+/* --- 7. RESPONSIVE MOBILE --- */
+@media (max-width: 991px) {
+    /* Header trên Mobile */
+    :root {
+        --header-height: 70px;
+    }
+    
+    .navbar-collapse {
+        background: #fff;
+        padding: 20px;
+        border-top: 1px solid #eee;
+        max-height: 80vh;
+        overflow-y: auto;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Mega Menu trên Mobile (Trở thành dropdown thường) */
+    .has-megamenu {
+        position: relative !important;
+    }
+    
+    .megamenu {
+        position: static !important;
+        width: 100% !important;
+        box-shadow: none;
+        border-top: none;
+        padding: 0 0 0 15px;
+        display: none; /* Ẩn, hiện bằng click của Bootstrap JS */
+    }
+
+    .megamenu.show {
+        display: block;
+    }
+
+    /* Ẩn search bar lớn trên mobile nếu cần */
+    .header-search-form {
+        margin-top: 15px;
+        margin-bottom: 15px;
+        max-width: 100% !important;
+    }
+}

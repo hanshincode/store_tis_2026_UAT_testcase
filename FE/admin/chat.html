@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Chat - TIS Admin</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/chat.css">
+    <style>
+        /* CSS Tùy chỉnh thương hiệu TIS */
+        :root { --tis-red: #D71920; }
+        .btn-primary, .bg-primary { background-color: var(--tis-red) !important; border-color: var(--tis-red) !important; }
+        .text-danger { color: var(--tis-red) !important; }
+        .msgr-tabs .btn.active { background-color: var(--tis-red) !important; color: white !important; border: none; }
+        .msgr-item.active { border-left: 4px solid var(--tis-red); background-color: #fff1f1; }
+        
+        /* Hiệu ứng cho icon Lưu trữ */
+        #btn-archive-chat {
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            color: #65676b;
+        }
+        #btn-archive-chat:hover {
+            background-color: #f0f2f5;
+            color: var(--tis-red);
+            transform: scale(1.1);
+        }
+        
+        /* Badge phân biệt khách hàng */
+        .badge-member { background-color: #28a745; font-size: 0.65rem; }
+        .badge-guest { background-color: #6c757d; font-size: 0.65rem; }
+        
+        /* Tối ưu header chat */
+        .msgr-main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-content">
+        <div class="chat-wrapper-global">
+            <div class="msgr-sidebar">
+                <div class="msgr-sidebar-header">
+                    <h4 class="fw-bold mb-0">Messenger</h4>
+                    <div class="msgr-search-container mt-2">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Tìm kiếm khách hàng...">
+                    </div>
+                </div>
+                
+                <div class="msgr-tabs d-flex p-2 border-bottom bg-white overflow-auto">
+                    <button class="flex-fill btn btn-sm btn-primary active rounded-pill mx-1 filter-btn" data-filter="all">Tất cả</button>
+                    <button class="flex-fill btn btn-sm btn-light rounded-pill mx-1 filter-btn" data-filter="guest">Vãng lai</button>
+                    <button class="flex-fill btn btn-sm btn-light rounded-pill mx-1 filter-btn" data-filter="user">Thành viên</button>
+                    <button class="flex-fill btn btn-sm btn-light rounded-pill mx-1 filter-btn" data-filter="archived">Lưu trữ</button>
+                </div>
+                
+                <div class="msgr-list" id="conv-list">
+                    </div>
+            </div>
+
+            <div class="msgr-main">
+                <div class="msgr-main-header" id="chat-header">
+                    <div class="d-flex align-items-center gap-2">
+                        <div class="msgr-avatar-lg" id="header-avatar">?</div>
+                        <div>
+                            <div class="fw-bold" id="header-name">Chọn hội thoại</div>
+                            <div class="msgr-status text-muted" id="header-status" style="font-size: 0.8rem;">
+                                <i class="fas fa-circle me-1" style="font-size:0.5rem;color:#65676b"></i>Offline
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="header-actions" style="display: none;">
+                        <i class="fas fa-archive fs-5" id="btn-archive-chat" title="Lưu trữ hội thoại này"></i>
+                    </div>
+                </div>
+
+                <div class="msgr-chat-box" id="message-box">
+                    <div class="msgr-empty">
+                        <i class="fab fa-facebook-messenger" style="font-size:4rem;color:#ddd;margin-bottom:15px"></i>
+                        <p class="text-muted">Chọn một cuộc trò chuyện để bắt đầu hỗ trợ</p>
+                    </div>
+                </div>
+
+                <div class="msgr-footer" id="input-area" style="display: none;">
+                    <div class="msgr-footer-icons">
+                        <i class="fas fa-plus-circle" id="btn-upload-file" title="Thêm file"></i>
+                        <i class="fas fa-image" id="btn-upload-img" title="Gửi ảnh"></i>
+                    </div>
+                    
+                    <div class="msgr-input-wrapper">
+                        <input type="text" id="msg-input" placeholder="Aa" onkeypress="handleEnter(event)">
+                    </div>
+                    <button class="msgr-send-btn" onclick="sendMessage()" title="Gửi">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="js/core.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>

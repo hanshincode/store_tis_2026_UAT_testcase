@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg fixed-top shadow-none" id="mainNavbar">
+    <div class="container">
+        <a class="navbar-brand animate__animated animate__fadeInDown" href="index.html">
+            <img src="images/logo.png" alt="TIS Logo" id="nav-logo" style="height: 60px; transition: 0.3s;" onerror="this.onerror=null; this.src='https://placehold.co/150x50/ffffff/d71920?text=TIS+LOGO';">
+        </a>
+        
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item"><a class="nav-link fw-bold px-3" href="index.html">Trang chủ</a></li>
+                
+                <li class="nav-item dropdown has-megamenu">
+                    <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown" aria-expanded="false" onclick="window.location.href='products.html';">
+                        Sản phẩm
+                    </a>
+                    <div class="dropdown-menu megamenu shadow-sm border-0 mt-0" aria-labelledby="productDropdown">
+                        <div class="container py-3">
+                            <div class="row g-4">
+                                <div class="col-md-6 border-end">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold text-danger text-uppercase m-0">Cá nhân</h6>
+                                            <small class="text-muted">Bảo vệ bạn và gia đình</small>
+                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled row ps-2" id="menu-cat-ind">
+                                        <li class="col-12 text-center text-muted"><i class="fas fa-spinner fa-spin"></i> Đang tải...</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="d-flex align-items-center mb-3">
+                                        <div class="bg-dark text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-building"></i>
+                                        </div>
+                                        <div>
+                                            <h6 class="fw-bold text-dark text-uppercase m-0">Doanh nghiệp</h6>
+                                            <small class="text-muted">Giải pháp toàn diện cho tổ chức</small>
+                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled row ps-2" id="menu-cat-ent">
+                                        <li class="col-12 text-center text-muted"><i class="fas fa-spinner fa-spin"></i> Đang tải...</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-light p-2 mt-3 rounded text-center small text-muted">
+                                <i class="fas fa-phone-alt text-danger me-2"></i>Tư vấn miễn phí: <strong class="text-danger">+84 28 54 171 181</strong>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link fw-bold px-3" href="#news">Tin tức</a></li>
+            </ul>
+
+            <form class="d-flex mx-auto header-search-form position-relative" onsubmit="handleGlobalSearch(event)" style="max-width: 400px; width: 100%;">
+                <div class="input-group search-group-custom">
+                    <input type="text" id="global-search" class="form-control rounded-pill-start border-end-0" placeholder="Tìm gói bảo hiểm..." autocomplete="off">
+                    <button class="btn btn-white border border-start-0 rounded-pill-end" type="submit">
+                        <i class="fas fa-search text-muted"></i>
+                    </button>
+                </div>
+                <div id="search-suggestions" class="list-group position-absolute w-100 shadow-sm" style="top: 100%; z-index: 1050; display: none;"></div>
+            </form>
+
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item me-3">
+                    <a href="user/cart.html" class="nav-link position-relative text-dark">
+                        <i class="fas fa-shopping-cart fa-lg"></i>
+                        <span id="cart-count-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem; display: none;">0</span>
+                    </a>
+                </li>
+
+
+                <li id="chat-menu-item" style="display: none;">
+                    <a class="dropdown-item" href="user/chat.html">
+                        <i class="fas fa-headset me-2"></i> Hỗ trợ & Chat
+                    </a>
+                </li>
+                <li class="nav-item dropdown" id="auth-section">
+                    <a href="login.html" class="btn btn-danger rounded-pill px-4 fw-bold shadow-sm">Đăng nhập</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

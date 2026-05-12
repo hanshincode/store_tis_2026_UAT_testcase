@@ -1,0 +1,239 @@
+/* =========================================
+   FILE: fontend/css/product.css
+   MÔ TẢ: CSS riêng cho trang Danh sách sản phẩm & Chi tiết sản phẩm
+   ========================================= */
+
+/* --- 1. GIAO DIỆN DANH MỤC SẢN PHẨM (SIDEBAR) --- */
+.category-sidebar {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    border: 1px solid #f0f0f0;
+}
+
+.category-header {
+    background: linear-gradient(135deg, #D71920, #b01218);
+    color: white;
+    padding: 16px 20px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    padding: 14px 20px;
+    cursor: pointer;
+    border-bottom: 1px solid #f5f6fa;
+    display: flex;
+    align-items: center;
+    color: #495057;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.category-list li:last-child {
+    border-bottom: none;
+}
+
+.category-list li i {
+    width: 24px;
+    text-align: center;
+    margin-right: 12px;
+    color: #adb5bd;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+/* Hiệu ứng khi di chuột (Hover) & Đang chọn (Active) */
+.category-list li:hover {
+    background-color: #fff5f5;
+    color: #D71920;
+    padding-left: 24px; /* Hiệu ứng đẩy text nhẹ sang phải */
+}
+
+.category-list li:hover i {
+    color: #D71920;
+}
+
+.category-list li.active {
+    background-color: #fff5f5;
+    color: #D71920;
+    border-left: 4px solid #D71920; /* Vạch đỏ bên trái */
+    font-weight: 700;
+}
+
+.category-list li.active i {
+    color: #D71920;
+}
+
+
+/* --- 2. THẺ SẢN PHẨM (CARD GRID) --- */
+.product-item-col {
+    display: flex; /* Để thẻ card luôn full chiều cao của cột */
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Xếp dọc các thành phần */
+    position: relative;
+}
+
+/* Hiệu ứng hover vào thẻ sản phẩm */
+.product-card:hover {
+    transform: translateY(-5px); /* Nổi lên 5px */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1); /* Bóng đổ mềm */
+    border-color: #facccf; /* Viền chuyển màu hồng nhạt */
+}
+
+/* Phần bao quanh ảnh sản phẩm */
+.product-img-wrapper {
+    position: relative;
+    overflow: hidden;
+    height: 220px; /* Chiều cao cố định cho ảnh */
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cắt ảnh vừa khung, không bị méo */
+    transition: transform 0.6s ease;
+}
+
+/* Zoom ảnh nhẹ khi hover */
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.08);
+}
+
+/* Nhãn danh mục trên ảnh (Badge) */
+.badge-category {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(215, 25, 32, 0.9);
+    color: #fff;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Phần nội dung thẻ (Tên, mô tả, giá) */
+.card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Lấp đầy khoảng trống còn lại */
+}
+
+.product-title {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    min-height: 44px; /* Đảm bảo tên luôn chiếm ít nhất 2 dòng để đều nhau */
+}
+
+.product-title a {
+    color: #333;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-decoration: none;
+    transition: color 0.2s;
+    
+    /* Cắt bớt tên quá dài (tối đa 2 dòng) */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.product-title a:hover {
+    color: #d71920;
+}
+
+.product-desc {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    
+    /* Cắt bớt mô tả quá dài (tối đa 3 dòng) */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Phần chân thẻ (Giá & Nút) */
+.card-footer-custom {
+    margin-top: auto; /* Đẩy xuống đáy thẻ */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #f1f1f1;
+}
+
+.price-section {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #d71920;
+}
+
+.btn-view-detail {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    border: 1px solid #d71920;
+    color: #d71920;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-view-detail:hover {
+    background: #d71920;
+    color: #fff;
+    transform: rotate(-45deg); /* Xoay nhẹ icon khi hover */
+}
+
+/* --- 3. RESPONSIVE MOBILE --- */
+@media (max-width: 768px) {
+    .category-sidebar {
+        display: none; /* Ẩn sidebar trên mobile (hoặc chuyển thành offcanvas nếu muốn) */
+    }
+    
+    .product-img-wrapper {
+        height: 180px; /* Giảm chiều cao ảnh trên mobile */
+    }
+    
+    .product-title {
+        min-height: auto;
+        font-size: 0.95rem;
+    }
+}
