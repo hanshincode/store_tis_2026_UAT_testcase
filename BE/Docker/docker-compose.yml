@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      # Trỏ ra thư mục gốc của backend để lấy được requirements.txt
+      context: ..          
+      dockerfile: Docker/Dockerfile
+    container_name: tis_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      # Ánh xạ code trực tiếp để thay đổi ở ngoài máy chủ tự cập nhật vào trong
+      - ..:/app            
+      - backend_media:/app/media
+      - backend_static:/app/static
+    environment:
+      - DEBUG=True
+      # Thiết lập múi giờ Việt Nam cho log và thời gian tin nhắn chat
+      - TZ=Asia/Ho_Chi_Minh
+    # Tự động khởi động lại nếu container bị treo hoặc server khởi động lại
+    restart: unless-stopped
+
+volumes:
+  backend_media:
+  backend_static:
